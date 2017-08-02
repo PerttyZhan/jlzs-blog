@@ -18,7 +18,8 @@ class CreateIntagTable extends Migration
             $table->collation = 'utf8_general_ci';
 
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique()->nullable();
+            $table->integer('citations');
 
             $table->dateTime('created_at');
             $table->dateTime('updated_at');

@@ -10,7 +10,6 @@ class AuthController extends Controller
     //
     public function getlogin()
     {
-  dd(Admin::all());
     }
 
     public function postlogin(Request $request)

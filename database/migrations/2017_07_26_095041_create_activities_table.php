@@ -29,9 +29,11 @@ class CreateActivitiesTable extends Migration
             $table->string('active_content', 255);
             $table->integer('status')->default('0');
 
-            $table->integer('sort_id')->unsigned();
+            $table->integer('sort_id')->unsigned()->nullable();
             $table->foreign('sort_id')->references('id')->on('sort_activities');
-            $table->integer('activities_two_id')->default(1);
+            $table->string('actag_id',50)->nullable();
+
+            $table->integer('collection')->default(1);
 
             $table->integer('user_id')->unsigned()->nullable;
             $table->foreign('user_id')->references('id')->on('users');

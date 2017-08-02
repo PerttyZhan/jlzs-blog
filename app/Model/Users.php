@@ -17,20 +17,30 @@ class Users extends Model
 
     public function reports()
     {
-        return $this->hasMany('App\Model\Report','user_id','id');
+        return $this->belongsToMany('App\Model\Report','report_users','user_id','report_id');
     }
 
     public function informations()
     {
-        return $this->hasMany('App\Model\Information','user_id','id');
+        return $this->belongsToMany('App\Model\Information','information_users','user_id','information_id');
     }
     public function activities()
     {
-        return $this->hasMany('App\Model\Activities','user_id','id');
+        return $this->belongsToMany('App\Model\Activities','activities_users','user_id','activities_id');
     }
     public function reports_comments()
     {
-        return $this->hasMany('App\Model\Reports_Comments','reports_id','id');
+        return $this->hasMany('App\Model\Reports_Comments','user_id','id');
+    }
+
+    public function information_comments()
+    {
+        return $this->hasMany('App\Model\Information_Comment','user_id','id');
+    }
+
+    public function activities_comments()
+    {
+  return $this->hasMany('App\Model\Activities_Comments','user_id','id');
     }
 
     public function login()

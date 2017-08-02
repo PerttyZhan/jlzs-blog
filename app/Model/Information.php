@@ -14,16 +14,16 @@ class Information extends Model
     protected $primarKey='id';
     protected $dates = ['deleted_at'];
 
-    protected $fillable=['name','headline','title','view','weight','mantle','src_img','information_content','status','sort_id','user_id','activities_two_id','updated_at','created_at'];
+    protected $fillable=['name','headline','title','view','weight','mantle','src_img','information_content','status','jsonsort_id','intag_id','user_id','collection','updated_at','created_at'];
 
     public function users()
     {
-        return $this->belongsTo('App\Model\Users','user_id','id');
+        return $this->belongsTo('App\Model\Users','information_users','information_id','user_id');
     }
 
     public function information_comments()
     {
-        return $this->hasMany('App\Model\Information_Comment','sort_id','id');
+        return $this->hasMany('App\Model\Information_Comment','information_id','id');
     }
 
     public function sort_information()

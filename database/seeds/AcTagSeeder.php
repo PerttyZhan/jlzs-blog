@@ -14,13 +14,17 @@ class AcTagSeeder extends Seeder
     {
         //
         AcTage::create([
-            'name'=>'创享家'
+            'name'=>'创享家',
+            'citations'=>'9'
+
         ]);
         AcTage::create([
-            'name'=>'研习社'
+            'name'=>'研习社',
+            'citations'=>'9'
         ]);
         AcTage::create([
-            'name'=>'势道术'
+            'name'=>'势道术',
+            'citations'=>'9'
         ]);
     }
 }

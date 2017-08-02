@@ -21,7 +21,7 @@ class ActivitiesSeeder extends Seeder
             'active_content' => '11111',
             'status'=>'0',
             'sort_id' =>'1',
-            'activities_two_id'=>'0',
+            'collection'=>'0',
             'user_id'=>1
         ]);
         Activities::create([
@@ -32,7 +32,7 @@ class ActivitiesSeeder extends Seeder
             'active_content' => '11111',
             'status'=>'0',
             'sort_id' =>'2',
-            'activities_two_id'=>'0',
+            'collection'=>'0',
             'user_id'=>1
         ]);
         Activities::create([
@@ -43,7 +43,7 @@ class ActivitiesSeeder extends Seeder
             'active_content' => '11111',
             'status'=>'0',
             'sort_id' =>'3',
-            'activities_two_id'=>'0',
+            'collection'=>'0',
             'user_id'=>1
         ]);
     }

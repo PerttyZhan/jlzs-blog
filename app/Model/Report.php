@@ -12,16 +12,16 @@ class Report extends Model
     //
     protected $table='reports';
     protected $primarKey='id';
-    protected $fillable=['name','headline','title','view','weight','mantle','src_img','news_content','status','sort_id','user_id','report_two_id','updated_at','created_at'];
+    protected $fillable=['name','headline','title','view','weight','mantle','src_img','report_content','status','sort_id','user_id','retag_id','collection','updated_at','created_at'];
 
     public function users()
     {
-        return $this->belongsTo('App\Model\Users','user_id','id');
+        return $this->belongsToMany('App\Model\Users','report_users','report_id','user_id');
     }
 
     public function reports_comments()
     {
-        return $this->hasMany('App\Model\Reports_Comments','sort_id','id');
+        return $this->hasMany('App\Model\Reports_Comments','reports_id','id');
     }
 
     public function sort_reports()

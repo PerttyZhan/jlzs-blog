@@ -17,10 +17,10 @@ class ReportSeeder extends Seeder
             'headline' => '大',
             'title' => '小标题',
             'weight' =>'1',
-            'news_content' => '11111',
+            'report_content' => '11111',
             'status'=>'0',
             'sort_id' =>'1',
-            'report_two_id'=>'0',
+            'collection'=>'0',
             'user_id'=>1
         ]);
 
@@ -30,10 +30,10 @@ class ReportSeeder extends Seeder
                 'headline' => '很大',
                 'title' => '小标题',
                 'weight' =>'1',
-                'news_content' => '11111',
+                'report_content' => '11111',
                 'status'=>'0',
                 'sort_id' =>'2',
-                'report_two_id'=>'0',
+                'collection'=>'0',
                 'user_id'=>1
             ]
         );
@@ -43,10 +43,10 @@ class ReportSeeder extends Seeder
                 'headline' => '超级大',
                 'title' => '小标题',
                 'weight' =>'1',
-                'news_content' => '11111',
+                'report_content' => '11111',
                 'status'=>'0',
                 'sort_id' =>'3',
-                'report_two_id'=>'0',
+                'collection'=>'0',
                 'user_id'=>1
             ]
         );

@@ -12,7 +12,7 @@ class ReTag extends Model
     use SoftDeletes,Notifiable;
     protected $table='retag';
     protected $primarKey='id';
-    protected $fillable=['name','create_at','update_at'];
+    protected $fillable=['name','citations','create_at','update_at'];
     public function report()
     {
         return $this->belongsToMany('App\Model\Report','report_retag','report_id','tag_id');

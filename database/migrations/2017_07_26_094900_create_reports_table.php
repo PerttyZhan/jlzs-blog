@@ -25,13 +25,14 @@ class CreateReportsTable extends Migration
             $table->integer('weight')->default(0);
             $table->string('mantle',255)->nullable();
             $table->string('src_img',455)->nullable();
-            $table->string('news_content',455);
+            $table->string('report_content',455);
             $table->integer('status')->default('0');
 
-            $table->integer('sort_id')->unsigned();
+            $table->integer('sort_id')->unsigned()->nullable();
             $table->foreign('sort_id')->references('id')->on('sort_reports');
+            $table->string('retag_id',50)->nullable();
 
-            $table->integer('report_two_id')->default(0);
+            $table->integer('collection')->default(0);
 
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');

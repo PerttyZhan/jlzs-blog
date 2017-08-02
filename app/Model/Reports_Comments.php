@@ -12,6 +12,7 @@ class Reports_Comments extends Model
     use SoftDeletes,Notifiable;
     protected $table='reports_comments';
     protected $primarKey='id';
+    protected $fillable=['comment','user_id','reports_id','create_at','update_at'];
 
     public function users()
     {
@@ -19,7 +20,7 @@ class Reports_Comments extends Model
     }
     public function reports()
     {
-        return $this->belongsTo('App\Model\Report','sort_id','id');
+        return $this->belongsTo('App\Model\Report','reports_id','id');
     }
 
 

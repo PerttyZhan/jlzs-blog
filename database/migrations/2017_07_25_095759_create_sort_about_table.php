@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAboutTable extends Migration
+class CreateSortAboutTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,15 @@ class CreateAboutTable extends Migration
      */
     public function up()
     {
-        Schema::create('about', function (Blueprint $table) {
+        Schema::create('sort_about', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
 
             $table->increments('id');
-            $table->string('title',100)->unique();
-            $table->string('src_img')->nullable();
-            $table->string('about_content',255);
+            $table->string('sort');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
             $table->dateTime('deleted_at')->nullable();
-
         });
     }
 
@@ -35,6 +32,6 @@ class CreateAboutTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('about');
+        Schema::dropIfExists('sort_about');
     }
 }

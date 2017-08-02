@@ -20,7 +20,7 @@ class InformationSeeder extends Seeder
             'information_content' => '11111',
             'status'=>'0',
             'sort_id' =>'1',
-            'information_two_id'=>'0',
+            'collection'=>'0',
             'user_id'=>1
         ]);
 
@@ -33,7 +33,7 @@ class InformationSeeder extends Seeder
                 'information_content' => '11111',
                 'status'=>'0',
                 'sort_id' =>'2',
-                'information_two_id'=>'0',
+                'collection'=>'0',
                 'user_id'=>1
             ]
         );
@@ -46,7 +46,20 @@ class InformationSeeder extends Seeder
                 'information_content' => '11111',
                 'status'=>'0',
                 'sort_id' =>'3',
-                'information_two_id'=>'0',
+                'collection'=>'0',
+                'user_id'=>1
+            ]
+        );
+        Information::create(
+            [
+                'name' => '天台',
+                'headline' => '最大大',
+                'title' => '小标题',
+                'weight' =>'1',
+                'information_content' => '11111',
+                'status'=>'0',
+                'sort_id' =>'1',
+                'collection'=>'0',
                 'user_id'=>1
             ]
         );

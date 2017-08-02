@@ -28,10 +28,11 @@ class CreateInformationTable extends Migration
             $table->string('information_content',455);
             $table->integer('status')->default('0');
 
-            $table->integer('sort_id')->unsigned();
+            $table->integer('sort_id')->unsigned()->nullable();
             $table->foreign('sort_id')->references('id')->on('sort_information');
+            $table->string('intag_id',50)->nullable();
 
-            $table->integer('information_two_id')->default(0);
+            $table->integer('collection')->default(0);
 
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');

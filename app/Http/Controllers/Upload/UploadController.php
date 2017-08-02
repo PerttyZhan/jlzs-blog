@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Upload;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use YueCode\Cos\QCloudCos;
+use Intervention\Image\Facades\Image;
 
 class UploadController extends Controller
 {
@@ -26,7 +27,11 @@ class UploadController extends Controller
             $srcPath = $file->getRealPath();
             $ClientOriginalName = time() . rand(10000, 9999999) . '.' . $file->getClientOriginalExtension();
             $dstPath = "$this->folder/$ClientOriginalName";
+            $img = Image::make($file);
+            $resoult=$img->resize(944,295)->save('photo/'.$ClientOriginalName);
+            $src='photo/'.$ClientOriginalName;
             $upload = QCloudCos::upload($this->bucket, $srcPath, $dstPath);
+            unlink($src);
             $data = json_decode($upload)->data;
             $url[] = $data->source_url;
         }
