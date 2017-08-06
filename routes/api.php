@@ -3,14 +3,14 @@
 use Illuminate\Http\Request;
 
 Route::get('gettest','testController@getpost');
-Route::post('posttest','testController@testget');
+Route::post('posttest/{id}','testController@testget');
 
 
 Route::get('login','AuthController@getLogin',['route' =>'auth.login']);
 Route::post('login','AuthController@postLogin');
 Route::group(
     ['middleware' => [
-            'auth:api'
+            'auth:api-user'
         ],],function (){
     Route::get('logout','AuthController@logout');
 

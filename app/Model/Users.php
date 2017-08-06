@@ -43,6 +43,11 @@ class Users extends Model
   return $this->hasMany('App\Model\Activities_Comments','user_id','id');
     }
 
+    public function roles()
+    {
+        return $this->belongsToMany('App\Model\Role','users_roles','users_id','roles_id');
+    }
+
     public function login()
     {
         $api_token = md5($this->getAttribute('id') . '_' . time() . rand(0, 9999));
@@ -64,9 +69,14 @@ class Users extends Model
         return Hash::check($password, $this->getAttribute('password'));
     }
 
-    public static function findByphone($phone)
+    public static function findByname($name)
     {
-        return Users::where('phone', $phone)->first();
+        return Users::where('name', $name)->first();
+    }
+
+    public function user_actions($id)
+    {
+        return Users::find($id)->roles()->first()->actions()->paginate(8);
     }
 
 }

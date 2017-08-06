@@ -19,6 +19,11 @@ class UsersSeeder extends Seeder
         ]);
         Users::create([
             'name' => '李四',
+            'phone'=>1111231111,
+            'password'=>bcrypt('123456'),
+        ]);
+        Users::create([
+            'name' => 'admins',
             'phone'=>111111111,
             'password'=>bcrypt('123456'),
         ]);

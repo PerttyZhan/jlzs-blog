@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Admin;
+use App\Model\Users;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 class AuthController extends Controller
@@ -16,14 +17,18 @@ class AuthController extends Controller
     {
         $username=request('username');
         $password=request('password');
-        $admin=Admin::findByUsername($username);
-        if (empty($admin)){
+        $users=Users::findByname($username);
+        if (empty($users)){
                return $this->jsonResponse(1000,'用户不存在');
         }else{
-              if ($admin->checkPassword($password)){
-                  $api_token=$admin->login();
+              if ($users->checkPassword($password)){
+                  $api_token=$users->login();
+                 $user_actions=$users->user_actions($users->id);
+                 foreach ($user_actions as $k=>$y){
+                     $y->api_token=$api_token;
+                 }
                   return $this->jsonSuccess([
-                      'api_token' => $api_token
+                      'auth_resoult' => $user_actions
                   ]);
               }else{
                   return $this->jsonResponse(1422, '密码错误');
