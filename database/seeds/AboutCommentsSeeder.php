@@ -16,17 +16,17 @@ class AboutCommentsSeeder extends Seeder
         About_Comments::create([
             'comment'=>'123123',
             'user_id'=>1,
-            'about_id'=>1
+            'comment_id'=>1
         ]);
         About_Comments::create([
             'comment'=>'123123',
             'user_id'=>1,
-            'about_id'=>1
+            'comment_id'=>1
         ]);
         About_Comments::create([
             'comment'=>'123123',
             'user_id'=>2,
-            'about_id'=>2
+            'comment_id'=>2
         ]);
     }
 }

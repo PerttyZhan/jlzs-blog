@@ -12,7 +12,7 @@ class About_Comments extends Model
     //
     protected $table='about_comments';
     protected $primarKey='id';
-    protected $fillable=['comment','user_id','sort_id'];
+    protected $fillable=['comment','user_id','comment_id'];
 
     public function users()
     {
@@ -20,7 +20,7 @@ class About_Comments extends Model
     }
     public function about()
     {
-        return $this->belongsTo('App\Model\About','about_id','id');
+        return $this->belongsTo('App\Model\About','comment_id','id');
     }
 
 }

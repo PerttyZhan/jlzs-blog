@@ -14,11 +14,11 @@ class Information_UsersSeeder extends Seeder
     {
         //
         Information_Users::create([
-            'information_id'=>1,
+            'see_id'=>1,
             'user_id'=>1
         ]);
         Information_Users::create([
-            'information_id'=>2,
+            'see_id'=>2,
             'user_id'=>1
         ]);
     }

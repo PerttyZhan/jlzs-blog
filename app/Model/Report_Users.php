@@ -13,5 +13,5 @@ class Report_Users extends Model
     //
     protected $table='report_users';
     protected $primarKey='id';
-    protected $fillable=['report_id','user_id','create_at','update_at'];
+    protected $fillable=['see_id','user_id','create_at','update_at'];
 }

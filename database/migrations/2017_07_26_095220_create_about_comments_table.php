@@ -22,8 +22,8 @@ class CreateAboutCommentsTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('about_id')->unsigned()->default(0);
-            $table->foreign('about_id')->references('id')->on('about');
+            $table->integer('comment_id')->unsigned()->default(0);
+            $table->foreign('comment_id')->references('id')->on('about');
 
             $table->dateTime('created_at');
             $table->dateTime('updated_at');

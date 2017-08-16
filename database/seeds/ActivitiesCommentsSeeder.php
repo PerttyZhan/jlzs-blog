@@ -16,17 +16,17 @@ class ActivitiesCommentsSeeder extends Seeder
         Activities_Comments::create([
             'comment'=>'123123',
             'user_id'=>1,
-            'activities_id'=>1
+            'comment_id'=>1
         ]);
         Activities_Comments::create([
             'comment'=>'123123',
             'user_id'=>1,
-            'activities_id'=>1
+            'comment_id'=>1
         ]);
         Activities_Comments::create([
             'comment'=>'123123',
             'user_id'=>2,
-            'activities_id'=>2
+            'comment_id'=>2
         ]);
     }
 }

@@ -18,8 +18,8 @@ class CreateActivitiesUsersTable extends Migration
             $table->collation = 'utf8_general_ci';
 
             $table->increments('id');
-            $table->integer('activities_id')->unsigned()->index();
-            $table->foreign('activities_id')->references('id')->on('activities');
+            $table->integer('see_id')->unsigned()->index();
+            $table->foreign('see_id')->references('id')->on('activities');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users');
 

@@ -16,17 +16,17 @@ class InformationCommentsSeeder extends Seeder
         Information_Comment::create([
             'comment'=>'123123',
             'user_id'=>1,
-            'information_id'=>1
+            'comment_id'=>1
         ]);
         Information_Comment::create([
             'comment'=>'123123',
             'user_id'=>1,
-            'information_id'=>1
+            'comment_id'=>1
         ]);
         Information_Comment::create([
             'comment'=>'123123',
             'user_id'=>2,
-            'information_id'=>2
+            'comment_id'=>2
         ]);
     }
 }

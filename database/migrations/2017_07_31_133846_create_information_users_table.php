@@ -18,8 +18,8 @@ class CreateInformationUsersTable extends Migration
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
 
-            $table->integer('information_id')->unsigned()->index();
-            $table->foreign('information_id')->references('id')->on('information');
+            $table->integer('see_id')->unsigned()->index();
+            $table->foreign('see_id')->references('id')->on('information');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users');
             $table->dateTime('created_at');

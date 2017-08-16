@@ -20,18 +20,17 @@ class CreateActivitiesTable extends Migration
             $table->increments('id');
 
             $table->string('name',25);
-            $table->string('headline')->unique();
+            $table->string('headline');
             $table->string('title', 100);
             $table->integer('view')->default(0);
             $table->integer('weight')->default(0);
-            $table->string('mantle',255)->nullable();
-            $table->string('src_img', 400)->nullable();
-            $table->string('active_content', 255);
-            $table->integer('status')->default('0');
+            $table->string('content', 255);
+            $table->integer('status')->default('1');
+            $table->string('img_src',255)->nullable();
 
             $table->integer('sort_id')->unsigned()->nullable();
             $table->foreign('sort_id')->references('id')->on('sort_activities');
-            $table->string('actag_id',50)->nullable();
+            $table->string('tag_id',50)->nullable();
 
             $table->integer('collection')->default(1);
 

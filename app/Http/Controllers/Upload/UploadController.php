@@ -4,47 +4,48 @@ namespace App\Http\Controllers\Upload;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 use YueCode\Cos\QCloudCos;
 use Intervention\Image\Facades\Image;
 
 class UploadController extends Controller
 {
     protected $file;
-    protected $bucket;
-    protected $folder;
-
-    //
-    function __construct($file, $bucket, $folder)
+    protected $scaling;
+    function __construct($file,$scaling)
     {
         $this->file = $file;
-        $this->bucket = $bucket;
-        $this->folder = $folder;
+        $this->scaling = $scaling;
     }
-
     public function upload()
     {
-        foreach ($this->file as $k => $file) {
-            $srcPath = $file->getRealPath();
-            $ClientOriginalName = time() . rand(10000, 9999999) . '.' . $file->getClientOriginalExtension();
-            $dstPath = "$this->folder/$ClientOriginalName";
-            $img = Image::make($file);
-            $resoult=$img->resize(944,295)->save('photo/'.$ClientOriginalName);
-            $src='photo/'.$ClientOriginalName;
-            $upload = QCloudCos::upload($this->bucket, $srcPath, $dstPath);
-            unlink($src);
-            $data = json_decode($upload)->data;
-            $url[] = $data->source_url;
-        }
-        $src_img = "";
-        $count=0;
-        foreach ($url as $k => $y) {
-            $m = $y;
-            $count++;
-        }
-        if ($count>1){
-           return $src_img = $m . ',' . $m;
+        $bucket = "photo";
+        $folder = "zhu";
+        $files=$this->file;
+
+        $srcPath = $files->getRealPath();
+        $ClientOriginalName = time() . rand(10000, 9999999) . '.' . $files->getClientOriginalExtension();
+
+        $dstPath = "$folder/$ClientOriginalName";
+        $img = Image::make($files);
+        $width=$img->width();
+        $height=$width/$this->scaling;
+        $resoult=$img->resize($width,$height)->save('photo/'.$ClientOriginalName);
+        $src='photo/'.$ClientOriginalName;
+        $upload = QCloudCos::upload($bucket,$src,$dstPath);
+        unlink($src);
+        $upload_json=json_decode($upload);
+        $data=$upload_json->data;
+        if ($upload_json->code==0){
+            return [
+                'data'=>$data->source_url,
+                'ok'=>'true'
+            ];
         }else{
-            return $src_img=$m;
+            return [
+                'ok'=>'false'
+            ];
         }
+
     }
 }

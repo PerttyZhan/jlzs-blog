@@ -23,7 +23,7 @@ class Users_RolesSeeder extends Seeder
         ]);
         User_Role::create([
             'users_id'=>3,
-            'roles_id'=>3
+            'roles_id'=>1
         ]);
     }
 }

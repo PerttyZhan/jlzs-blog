@@ -11,5 +11,5 @@ class Index_Carousel extends Model
     use SoftDeletes,Notifiable;
     protected $table='index_carousels';
     protected $primarKey='id';
-    protected $fillable=['src_img','created_at','updated_at'];
+    protected $fillable=['src_img','link','created_at','updated_at'];
 }

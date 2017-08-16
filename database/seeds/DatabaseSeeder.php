@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(UsersSeeder::class);
-        $this->call(AdminSeeder::class);
 
         $this->call(SortReportsSeeder::class);
         $this->call(SortActivitiesSeeder::class);
@@ -48,8 +47,9 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesSeeder::class);
         $this->call(Users_RolesSeeder::class);
         $this->call(ActionsSeeder::class);
-        $this->call(Roles_ActionsSeeder::class);
+//        $this->call(Roles_ActionsSeeder::class);
 
+        $this->call(WebsiteSeeder::class);
 
 
     }

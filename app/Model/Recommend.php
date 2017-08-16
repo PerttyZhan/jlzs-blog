@@ -11,6 +11,6 @@ class Recommend extends Model
     use SoftDeletes,Notifiable;
     protected $table='recommends';
     protected $primarKey='id';
-    protected $fillable=['src_img','created_at','updated_at'];
+    protected $fillable=['src_img','link','created_at','updated_at'];
 
 }

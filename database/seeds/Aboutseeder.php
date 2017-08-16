@@ -17,8 +17,8 @@ class Aboutseeder extends Seeder
             'headline' => '大了吗',
             'title' => '小标题',
             'weight' =>'1',
-            'about_content' => '11111',
-            'status'=>'0',
+            'content' => '11111',
+            'status'=>'1',
             'sort_id' =>'1',
             'collection'=>'0',
             'user_id'=>1
@@ -28,8 +28,8 @@ class Aboutseeder extends Seeder
             'headline' => '创变中国行',
             'title' => '小标题',
             'weight' =>'2',
-            'about_content' => '11111',
-            'status'=>'0',
+            'content' => '11111',
+            'status'=>'1',
             'sort_id' =>'2',
             'collection'=>'0',
             'user_id'=>1
@@ -39,8 +39,8 @@ class Aboutseeder extends Seeder
             'headline' => '超级大',
             'title' => '小标题',
             'weight' =>'3',
-            'about_content' => '11111',
-            'status'=>'0',
+            'content' => '11111',
+            'status'=>'1',
             'sort_id' =>'3',
             'collection'=>'0',
             'user_id'=>1

@@ -22,8 +22,8 @@ class CreateReportsCommentsTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('reports_id')->unsigned()->default(0);
-            $table->foreign('reports_id')->references('id')->on('reports');
+            $table->integer('comment_id')->unsigned()->default(0);
+            $table->foreign('comment_id')->references('id')->on('reports');
 
             $table->dateTime('created_at');
             $table->dateTime('updated_at');

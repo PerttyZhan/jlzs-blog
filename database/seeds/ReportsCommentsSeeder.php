@@ -16,17 +16,17 @@ class ReportsCommentsSeeder extends Seeder
         Reports_Comments::create([
             'comment'=>'111',
             'user_id'=>1,
-            'reports_id'=>1
+            'comment_id'=>1
         ]);
         Reports_Comments::create([
             'comment'=>'111',
             'user_id'=>1,
-            'reports_id'=>1
+            'comment_id'=>1
         ]);
         Reports_Comments::create([
             'comment'=>'111',
             'user_id'=>2,
-            'reports_id'=>2
+            'comment_id'=>2
         ]);
 
     }

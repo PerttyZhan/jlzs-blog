@@ -13,10 +13,10 @@ class ActivitiesCommentController extends Controller
     //
     public function index(Users $users,Request $request)
     {
-        $activities_id=$request->get('activities_id');
-        $activities=$users->activities()->with('activities_comments');
-        if ($activities_id){
-            $activities->where('activities.id',$activities_id);
+        $see_id=$request->get('see_id');
+        $activities=$users->user_activities()->with('activities_comments');
+        if ($see_id){
+            $activities->where('activities.id',$see_id);
         }
         return $activities->paginate(8);
     }

@@ -12,16 +12,20 @@ class Activities extends Model
     //
     protected $table='activities';
     protected $primarKey='id';
-    protected $fillable=['name','headline','title','view','weight','mantle','src_img','active_content','sort_id','status','sort_id','intag_id','collection','user_id','updated_at','created_at'];
+    protected $fillable=['name','headline','title','view','weight','content','sort_id','img_src','status','sort_id','tag_id','collection','user_id','updated_at','created_at'];
 
 
     public function users()
     {
-        return $this->belongsTo('App\Model\Users','activities_users','user_id','id');
+        return $this->belongsTo('App\Model\Users','user_id','id');
+    }
+    public function activities_img()
+    {
+        return $this->hasMany('App\Model\Activities_Image','activities_id','id');
     }
     public function activities_comments()
     {
-        return $this->hasMany('App\Model\Activities_Comments','activities_id','id');
+        return $this->hasMany('App\Model\Activities_Comments','comment_id','id');
     }
     public function sort_activities()
     {

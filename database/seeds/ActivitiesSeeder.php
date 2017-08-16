@@ -18,8 +18,8 @@ class ActivitiesSeeder extends Seeder
             'headline' => '大',
             'title' => '小标题',
             'weight' =>'1',
-            'active_content' => '11111',
-            'status'=>'0',
+            'content' => '11111',
+            'status'=>'1',
             'sort_id' =>'1',
             'collection'=>'0',
             'user_id'=>1
@@ -29,8 +29,8 @@ class ActivitiesSeeder extends Seeder
             'headline' => '创变中国行',
             'title' => '小标题',
             'weight' =>'2',
-            'active_content' => '11111',
-            'status'=>'0',
+            'content' => '11111',
+            'status'=>'1',
             'sort_id' =>'2',
             'collection'=>'0',
             'user_id'=>1
@@ -40,8 +40,8 @@ class ActivitiesSeeder extends Seeder
             'headline' => '超级大',
             'title' => '小标题',
             'weight' =>'3',
-            'active_content' => '11111',
-            'status'=>'0',
+            'content' => '11111',
+            'status'=>'1',
             'sort_id' =>'3',
             'collection'=>'0',
             'user_id'=>1

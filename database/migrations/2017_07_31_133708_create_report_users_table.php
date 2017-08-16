@@ -17,8 +17,8 @@ class CreateReportUsersTable extends Migration
             $table->collation = 'utf8_general_ci';
 
             $table->increments('id');
-            $table->integer('report_id')->unsigned()->index();
-            $table->foreign('report_id')->references('id')->on('reports');
+            $table->integer('see_id')->unsigned()->index();
+            $table->foreign('see_id')->references('id')->on('reports');
 
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users');

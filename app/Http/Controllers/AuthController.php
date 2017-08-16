@@ -6,6 +6,8 @@ use App\Model\Admin;
 use App\Model\Users;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Descriptor\MarkdownDescriptor;
+
 class AuthController extends Controller
 {
     //
@@ -23,12 +25,8 @@ class AuthController extends Controller
         }else{
               if ($users->checkPassword($password)){
                   $api_token=$users->login();
-                 $user_actions=$users->user_actions($users->id);
-                 foreach ($user_actions as $k=>$y){
-                     $y->api_token=$api_token;
-                 }
                   return $this->jsonSuccess([
-                      'auth_resoult' => $user_actions
+                      'api_token' => $api_token
                   ]);
               }else{
                   return $this->jsonResponse(1422, '密码错误');

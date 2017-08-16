@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Upload\UploadController;
 use App\Model\About;
+use App\Model\AbTage;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -12,54 +13,109 @@ class AboutController extends Controller
     public function index(Request $request)
     {
         $sort_id = $request->get('sort_id');
-        $id=$request->get('id');
-        $about=About::with(['sort_about','abtag'])->orderBy('view','desc')->orderBy('weight','desc');
+        $tag_id = $request->get('tag_id');
+        $start_time = request('start_time');
+        $end_time = request('end_time');
+        $status = $request->get('status');
+        $content = $request->get('with');
+
+        $collection = $request->get('collection');
+        $view = $request->get('view');
+        $weight = $request->get('weight');
+        $create = $request->get('creat_at');
+
+        $about = About::select('id', 'name', 'headline', 'img_src', 'title', 'view', 'weight', 'status', 'sort_id', 'tag_id', 'user_id', 'content', 'collection', 'created_at', 'updated_at', 'deleted_at')->with(['sort_about', 'abtag']);
+        if ($status != null) {
+            $about->where('status', $status);
+        }
         if ($sort_id) {
             $about->where('sort_id', $sort_id);
         }
-        if ($id){
-            $about->where('id',$id);
-                $about_view = About::where('id', $id)->first();
-            $about_view->view = $about_view->view+ 1;
-            $about_view->save();
-
+        if ($start_time) {
+            $about->where('created_at', '>=', $start_time);
         }
-        return $about->paginate(8);
+        if ($end_time) {
+            $about->where('created_at', '<=', $end_time);
+        }
+        if ($tag_id) {
+            $about->where('tag_id', 'like', '%' . $tag_id . '%');
+        }
+
+        if ($collection != null) {
+            if ($collection == 0) {
+                $about->orderBy('collection', 'desc');
+            }
+            if ($collection == 1) {
+                $about->orderBy('collection', 'asc');
+            }
+        }
+        if ($view != null) {
+            if ($view == 0) {
+                $about->orderBy('view', 'desc');
+            }
+            if ($weight == 1) {
+                $about->orderBy('view', 'asc');
+            }
+        }
+        if ($weight != null) {
+            if ($weight == 0) {
+                $about->orderBy('weight', 'desc');
+            }
+            if ($weight == 1) {
+                $about->orderBy('weight', 'asc');
+            }
+        }
+        if ($create != null) {
+            if ($create == 0) {
+                $about->orderBy('created_at', 'desc');
+            }
+            if ($weight == 1) {
+                $about->orderBy('created_at', 'asc');
+            }
+        }
+        if ($content) {
+            return $about->addSelect('content')->paginate(8);
+        } else {
+            return $about->paginate(8);
+        }
+
     }
-    public function store(Request $request)
+
+    public function info($id)
     {
+        return About::where('id', $id)->with('sort_about', 'abtag')->first();
+    }
 
-        if ($request->hasFile('src_img') || request()->file('mantle')) {
-            $bucket = "photo";
-            $folder = "zhu";
-            $file = $request->file('src_img');
-            $mantle = $request->file('mantle');
-            $name=$request->get('name');
-            $headline = $request->get('headline');
-            $title = $request->get('title');
-            $about_content = $request->get('about_content');
-            $weight = $request->get('weight');
-            $sort_id = $request->get('sort_id');
-            $abtag_id=$request->get('abtag_id');
+    public function store(Request $request, $id)
+    {
+        $name = $request->get('name');
+        $headline = $request->get('headline');
+        $title = $request->get('title');
+        $about_content = $request->get('content');
+        $weight = $request->get('weight');
+        $sort_id = $request->get('sort_id');
+        $abtag_id = $request->get('tag_id');
+        $img_src = $request->get('img_src');
+        $json_abtag_id = json_encode($abtag_id);
+        $resoult = About::create([
+            'name' => $name,
+            'headline' => $headline,
+            'title' => $title,
+            'weight' => $weight,
+            'content' => $about_content,
+            'sort_id' => $sort_id,
+            'tag_id' => $json_abtag_id,
+            'user_id' => $id,
+            'img_src' => $img_src
 
-            $json_abtag_id=json_encode($abtag_id);
-            $resoult = new UploadController($file, $bucket, $folder);
-            $src_img = $resoult->upload();
-            $mantle_resoult = new UploadController($mantle, $bucket, $folder);
-            $mantle = $mantle_resoult->upload();
-            $resoult = About::create([
-                'name'=>$name,
-                'headline' => $headline,
-                'title' => $title,
-                'weight' => $weight,
-                'mantle' => $mantle,
-                'src_img' => $src_img,
-                'about_content' => $about_content,
-                'sort_id'=>$sort_id,
-                'retag_id'=>$json_abtag_id
-            ]);
+        ]);
+
+        About::find($resoult->id)->abtag()->attach($abtag_id, ['created_at' => date('Y-m-d H-i-s'), 'updated_at' => date('Y-m-d H-i-s')]);
+        $abtag = AbTage::whereIn('id', $abtag_id)->get();
+        foreach ($abtag as $k => $y) {
+            $y->citations = $y->citations + 1;
+            $y->save();
         }
-        About::find($resoult->id)->abtag()->attach($abtag_id,['created_at'=>date('Y-m-d H-i-s'),'updated_at'=>date('Y-m-d H-i-s')]);
         if (!empty($resoult)) {
             return $this->jsonSuccess();
         } else {
@@ -68,41 +124,32 @@ class AboutController extends Controller
     }
 
 
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
 
-        if ($request->hasFile('src_img') || request()->file('mantle')) {
-            $bucket = "photo";
-            $folder = "zhu";
-            $file = $request->file('src_img');
-            $mantle = $request->file('mantle');
-            $name=$request->get('name');
-            $headline = $request->get('headline');
-            $title = $request->get('title');
-            $about_content = $request->get('about_content');
-            $weight = $request->get('weight');
-            $sort_id = $request->get('sort_id');
-            $abtag_id=$request->get('abtag_id');
+        $name = $request->get('name');
+        $headline = $request->get('headline');
+        $title = $request->get('title');
+        $about_content = $request->get('content');
+        $weight = $request->get('weight');
+        $sort_id = $request->get('sort_id');
+        $abtag_id = $request->get('tag_id');
+        $img_src = $request->get('img_src');
 
-            $json_abtag_id=json_encode($abtag_id);
-            $resoult = new UploadController($file, $bucket, $folder);
-            $src_img = $resoult->upload();
-            $mantle_resoult = new UploadController($mantle, $bucket, $folder);
-            $mantle = $mantle_resoult->upload();
-            $resoult = About::find($id)->update([
-                'name'=>$name,
-                'headline' => $headline,
-                'title' => $title,
-                'weight' => $weight,
-                'mantle' => $mantle,
-                'src_img' => $src_img,
-                'about_content' => $about_content,
-                'sort_id'=>$sort_id,
-                'abtag_id'=>$json_abtag_id
-            ]);
-        }
+        $json_abtag_id = json_encode($abtag_id);
+        $resoult = About::find($id)->update([
+            'name' => $name,
+            'headline' => $headline,
+            'title' => $title,
+            'weight' => $weight,
+            'content' => $about_content,
+            'sort_id' => $sort_id,
+            'tag_id' => $json_abtag_id,
+            'img_src' => $img_src
+        ]);
+
         About::find($id)->abtag()->detach();
-        About::find($id)->abtag()->attach($abtag_id,['created_at'=>date('Y-m-d H-i-s'),'updated_at'=>date('Y-m-d H-i-s')]);
+        About::find($id)->abtag()->attach($abtag_id, ['created_at' => date('Y-m-d H-i-s'), 'updated_at' => date('Y-m-d H-i-s')]);
         if (!empty($resoult)) {
             return $this->jsonSuccess();
         } else {
@@ -112,18 +159,19 @@ class AboutController extends Controller
 
     public function destroy($id)
     {
-        $report = About::destroy($id);
-        if ($report) {
+        $about = About::destroy($id);
+        if ($about) {
             return $this->jsonSuccess();
         } else {
             return $this->jsonResponse('1', '删除失败');
         }
     }
 
-    public function status($id,Request $request)
+    public function status($id, Request $request)
     {
-        $status=About::find($id)->update([
-            'status'=>1,
+        $status_r = $request->get('status');
+        $status = About::find($id)->update([
+            'status' => $status_r,
         ]);
         if ($status) {
             return $this->jsonSuccess();

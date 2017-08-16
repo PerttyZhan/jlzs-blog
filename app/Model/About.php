@@ -11,13 +11,16 @@ class About extends Model
     use SoftDeletes,Notifiable;
     protected $table='about';
     protected $primarKey='id';
-    protected $fillable=['name','headline','title','view','weight','mantle','src_img','about_content','status','sort_id','user_id','abtag_id','collection','updated_at','created_at'];
+    protected $fillable=['name','headline','title','view','weight','content','img_src','status','sort_id','user_id','tag_id','collection','updated_at','created_at'];
 
     public function users()
     {
         return $this->belongsTo('App\Model\Users','user_id','id');
     }
-
+    public function about_img()
+    {
+        return $this->hasMany('App\Model\About_Image','about_id','id');
+    }
     public function about_comments()
     {
         return $this->hasMany('App\Model\About_Comments','user_id','id');

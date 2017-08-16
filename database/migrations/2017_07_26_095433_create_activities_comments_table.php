@@ -22,8 +22,8 @@ class CreateActivitiesCommentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('activities_id')->unsigned()->default(0);
-            $table->foreign('activities_id')->references('id')->on('activities');
+            $table->integer('comment_id')->unsigned()->default(0);
+            $table->foreign('comment_id')->references('id')->on('activities');
 
             $table->dateTime('created_at');
             $table->dateTime('updated_at');

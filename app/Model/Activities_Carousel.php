@@ -12,5 +12,5 @@ class Activities_Carousel extends Model
     //
     protected $table='activities_carousels';
     protected $primarKey='id';
-    protected $fillable=['src_img','created_at','updated_at'];
+    protected $fillable=['src_img','link','created_at','updated_at'];
 }

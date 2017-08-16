@@ -20,13 +20,8 @@ class RolesSeeder extends Seeder
         );
      Role::create(
          [
-          'role_name'=>'管理员',
+          'role_name'=>'游客',
          ]
      );
-        Role::create(
-            [
-                'role_name'=>'普通用户',
-            ]
-        );
     }
 }

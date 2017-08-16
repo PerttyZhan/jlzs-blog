@@ -12,7 +12,7 @@ class Activities_Comments extends Model
     //
     protected $table='activities_comments';
     protected $primarKey='id';
-    protected $fillable=['comment','user_id','activities_id','create_at','update_at'];
+    protected $fillable=['comment','user_id','comment_id','create_at','update_at'];
 
     public function users()
     {
@@ -20,7 +20,7 @@ class Activities_Comments extends Model
     }
     public function activities()
     {
-        return $this->belongsTo('App\Model\Activities','activities_id','id');
+        return $this->belongsTo('App\Model\Activities','comment_id','id');
     }
 
 }

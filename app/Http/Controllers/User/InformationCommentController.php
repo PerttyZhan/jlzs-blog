@@ -12,10 +12,10 @@ class InformationCommentController extends Controller
     //
     public function index(Users $users,Request $request)
     {
-        $information_id=$request->get('information_id');
-        $information=$users->informations()->with('information_comments');
-        if ($information_id){
-            $information->where('information.id',$information_id);
+        $see_id=$request->get('see_id');
+        $information=$users->user_informations()->with('information_comments');
+        if ($see_id){
+            $information->where('information.id',$see_id);
         }
         return $information->paginate(8);
     }
