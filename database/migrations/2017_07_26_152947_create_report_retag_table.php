@@ -18,8 +18,8 @@ class CreateReportRetagTable extends Migration
             $table->collation = 'utf8_general_ci';
 
             $table->increments('id');
-            $table->integer('report_id')->unsigned()->index();
-            $table->foreign('report_id')->references('id')->on('reports');
+            $table->integer('new_id')->unsigned()->index();
+            $table->foreign('new_id')->references('id')->on('reports');
 
             $table->integer('tag_id')->unsigned()->index();
             $table->foreign('tag_id')->references('id')->on('retag');

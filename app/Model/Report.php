@@ -12,7 +12,7 @@ class Report extends Model
     //
     protected $table='reports';
     protected $primarKey='id';
-    protected $fillable=['name','headline','title','view','weight','content','img_src','status','sort_id','user_id','tag_id','collection','updated_at','created_at'];
+    protected $fillable=['name','difference','headline','title','view','like','weight','content','img_src','status','sort_id','user_id','tag_id','collection','updated_at','created_at'];
 
     public function users()
     {
@@ -27,10 +27,17 @@ class Report extends Model
     {
      return $this->belongsTo('App\Model\Sort_Report','sort_id','id');
     }
-
-    public function retag()
+    public function sort()
     {
-        return $this->belongsToMany('App\Model\ReTag','report_retag','report_id','tag_id');
+        return $this->belongsTo('App\Model\Sort_Report','sort_id','id');
     }
 
+    public function tag()
+    {
+        return $this->belongsToMany('App\Model\ReTag','report_retag','new_id','tag_id');
+    }
+    public function retag()
+    {
+        return $this->belongsToMany('App\Model\ReTag','report_retag','new_id','tag_id');
+    }
 }

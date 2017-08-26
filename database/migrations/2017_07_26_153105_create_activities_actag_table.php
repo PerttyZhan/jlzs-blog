@@ -18,8 +18,8 @@ class CreateActivitiesActagTable extends Migration
             $table->collation = 'utf8_general_ci';
 
             $table->increments('id');
-            $table->integer('activities_id')->unsigned()->index();
-            $table->foreign('activities_id')->references('id')->on('activities');
+            $table->integer('new_id')->unsigned()->index();
+            $table->foreign('new_id')->references('id')->on('activities');
             $table->integer('tag_id')->unsigned()->index();
             $table->foreign('tag_id')->references('id')->on('actag');
 

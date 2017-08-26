@@ -111,18 +111,26 @@ class InformationController extends Controller
             'user_id' => $id,
             'img_src' => $img_src
         ]);
+       if($intag_id){
+           Information::find($resoult->id)->intag()->attach($intag_id, ['created_at' => date('Y-m-d H-i-s'), 'updated_at' => date('Y-m-d H-i-s')]);
+           $intag = InTag::whereIn('id', $intag_id)->get();
+           foreach ($intag as $k => $y) {
+               $y->citations = $y->citations + 1;
+               $y->save();
+           }
+           if (!empty($resoult)) {
+               return $this->jsonSuccess();
+           } else {
+               return $this->jsonResponse('1', '添加失败');
+           }
+       }else{
+           if (!empty($resoult)) {
+               return $this->jsonSuccess();
+           } else {
+               return $this->jsonResponse('1', '添加失败');
+           }
+       }
 
-        Information::find($resoult->id)->intag()->attach($intag_id, ['created_at' => date('Y-m-d H-i-s'), 'updated_at' => date('Y-m-d H-i-s')]);
-        $intag = InTag::whereIn('id', $intag_id)->get();
-        foreach ($intag as $k => $y) {
-            $y->citations = $y->citations + 1;
-            $y->save();
-        }
-        if (!empty($resoult)) {
-            return $this->jsonSuccess();
-        } else {
-            return $this->jsonResponse('1', '添加失败');
-        }
     }
 
 

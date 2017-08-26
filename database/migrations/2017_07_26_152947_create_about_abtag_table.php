@@ -18,8 +18,8 @@ class CreateAboutAbtagTable extends Migration
             $table->collation = 'utf8_general_ci';
 
             $table->increments('id');
-            $table->integer('about_id')->unsigned()->index();
-            $table->foreign('about_id')->references('id')->on('about');
+            $table->integer('new_id')->unsigned()->index();
+            $table->foreign('new_id')->references('id')->on('about');
 
             $table->integer('tag_id')->unsigned()->index();
             $table->foreign('tag_id')->references('id')->on('abtag');

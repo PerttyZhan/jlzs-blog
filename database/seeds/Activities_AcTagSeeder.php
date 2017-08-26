@@ -14,15 +14,15 @@ class Activities_AcTagSeeder extends Seeder
     {
 
         Activities_Actag::create([
-            'activities_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>1
         ]);
         Activities_Actag::create([
-            'activities_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>2
         ]);
         Activities_Actag::create([
-            'activities_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>3
         ]);
     }

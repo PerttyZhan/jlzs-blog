@@ -110,18 +110,27 @@ class ReportController extends Controller
             'user_id' => $id,
             'img_src' => $img_src
         ]);
+        if (!$retag_id){
+            if (!empty($resoult)) {
+                return $this->jsonSuccess();
+            } else {
+                return $this->jsonResponse('1', '添加失败');
+            }
+        }else{
+            Report::find($resoult->id)->retag()->attach($retag_id, ['created_at' => date('Y-m-d H-i-s'), 'updated_at' => date('Y-m-d H-i-s')]);
+            $retag = ReTag::whereIn('id', $retag_id)->get();
+            foreach ($retag as $k => $y) {
+                $y->citations = $y->citations + 1;
+                $y->save();
+            }
+            if (!empty($resoult)) {
+                return $this->jsonSuccess();
+            } else {
+                return $this->jsonResponse('1', '添加失败');
+            }
+        }
 
-        Report::find($resoult->id)->retag()->attach($retag_id, ['created_at' => date('Y-m-d H-i-s'), 'updated_at' => date('Y-m-d H-i-s')]);
-        $retag = ReTag::whereIn('id', $retag_id)->get();
-        foreach ($retag as $k => $y) {
-            $y->citations = $y->citations + 1;
-            $y->save();
-        }
-        if (!empty($resoult)) {
-            return $this->jsonSuccess();
-        } else {
-            return $this->jsonResponse('1', '添加失败');
-        }
+
     }
 
 

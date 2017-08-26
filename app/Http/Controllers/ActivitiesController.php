@@ -109,18 +109,27 @@ class ActivitiesController extends Controller
             'img_src' => $img_src
 
         ]);
+        if (!$actag_id){
+            if (!empty($resoult)) {
+                return $this->jsonSuccess();
+            } else {
+                return $this->jsonResponse('1', '添加失败');
+            }
+        }else{
+            Activities::find($resoult->id)->actag()->attach($actag_id, ['created_at' => date('Y-m-d H-i-s'), 'updated_at' => date('Y-m-d H-i-s')]);
+            $actag = AcTage::whereIn('id', $actag_id)->get();
+            foreach ($actag as $k => $y) {
+                $y->citations = $y->citations + 1;
+                $y->save();
+            }
+            if (!empty($resoult)) {
+                return $this->jsonSuccess();
+            } else {
+                return $this->jsonResponse('1', '添加失败');
+            }
+        }
 
-        Activities::find($resoult->id)->actag()->attach($actag_id, ['created_at' => date('Y-m-d H-i-s'), 'updated_at' => date('Y-m-d H-i-s')]);
-        $actag = AcTage::whereIn('id', $actag_id)->get();
-        foreach ($actag as $k => $y) {
-            $y->citations = $y->citations + 1;
-            $y->save();
-        }
-        if (!empty($resoult)) {
-            return $this->jsonSuccess();
-        } else {
-            return $this->jsonResponse('1', '添加失败');
-        }
+
     }
 
 

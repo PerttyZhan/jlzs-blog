@@ -38,4 +38,17 @@ class SortReportController extends Controller
         }
     }
 
+    public function update(Request $request,$id)
+    {
+        $sort=$request->get('sort');
+        $sort_report=Sort_Report::find($id)->update([
+            'sort'=>$sort,
+        ]);
+        if ($sort_report){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonResponse('1', '修改失败');
+        }
+    }
+
 }

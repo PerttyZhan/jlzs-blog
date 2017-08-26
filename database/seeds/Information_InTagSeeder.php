@@ -14,15 +14,15 @@ class Information_InTagSeeder extends Seeder
     {
         //
         Information_Intag::create([
-            'information_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>1
         ]);
         Information_Intag::create([
-            'information_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>2
         ]);
         Information_Intag::create([
-            'information_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>3
         ]);
     }

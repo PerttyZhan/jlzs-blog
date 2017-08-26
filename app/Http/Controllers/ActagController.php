@@ -43,7 +43,7 @@ class ActagController extends Controller
         $name=$request->get('name');
         $citations=$request->get('citations');
 
-        $actag=InTag::find($id)->update([
+        $actag=AcTage::find($id)->update([
             'name'=>$name,
             'citations'=>$citations
         ]);

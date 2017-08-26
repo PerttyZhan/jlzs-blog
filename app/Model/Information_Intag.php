@@ -12,6 +12,6 @@ class Information_Intag extends Model
     //
     protected $table='information_intag';
     protected $primarKey='id';
-    protected $fillable=['information_id','tag_id','create_at','update_at'];
+    protected $fillable=['new_id','tag_id','create_at','update_at'];
 
 }

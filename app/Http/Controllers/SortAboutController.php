@@ -36,4 +36,18 @@ class SortAboutController extends Controller
             return $this->jsonResponse('1', '删除失败');
         }
     }
+
+    public function update(Request $request,$id)
+    {
+        $sort=$request->get('sort');
+
+        $sort_about=Sort_About::find($id)->update([
+            'sort'=>$sort,
+        ]);
+        if ($sort_about){
+            return $this->jsonSuccess();
+        }else{
+            return $this->jsonResponse('1', '修改失败');
+        }
+    }
 }

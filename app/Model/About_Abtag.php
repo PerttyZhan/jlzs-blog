@@ -12,5 +12,5 @@ class About_Abtag extends Model
     //
     protected $table='about_abtag';
     protected $primarKey='id';
-    protected $fillable=['about_id','tag_id','create_at','update_at'];
+    protected $fillable=['new_id','tag_id','create_at','update_at'];
 }

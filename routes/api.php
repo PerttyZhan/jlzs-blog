@@ -56,34 +56,42 @@ Route::group(
     Route::get('sort_reports','SortReportController@index');
     Route::post('sort_reports','SortReportController@store');
     Route::post('sort_reports/{id}','SortReportController@destroy');
+    Route::post('sort_reports/{id}/edit','SortReportController@update');
 
     Route::get('sort_activities','SortActivitiesController@index');
     Route::post('sort_activities','SortActivitiesController@store');
     Route::post('sort_activities/{id}','SortActivitiesController@destroy');
+    Route::post('sort_activities/{id}/edit','SortActivitiesController@update');
 
     Route::get('sort_information','SortInformationController@index');
     Route::post('sort_information','SortInformationController@store');
     Route::post('sort_information/{id}','SortInformationController@destroy');
+    Route::post('sort_information/{id}/edit','SortInformationController@update');
 
     Route::get('sort_about','SortAboutController@index');
     Route::post('sort_about','SortAboutController@store');
     Route::post('sort_about/{id}','SortAboutController@destroy');
+    Route::post('sort_about/{id}/edit','SortAboutController@update');
 
 //所有标签
     Route::get('intag','IntagController@index');
     Route::post('intag','IntagController@store');
     Route::post('intag/{id}','IntagController@destroy');
+    Route::post('intag/{id}/edit','IntagController@update');
 
     Route::get('retag','RetagController@index');
     Route::post('retag','RetagController@store');
     Route::post('retag/{id}','RetagController@destroy');
+    Route::post('retag/{id}/edit','RetagController@update');
 
     Route::get('actag','ActagController@index');
     Route::post('actag','ActagController@store');
+    Route::post('actag/{id}/edit','ActagController@update');
     Route::post('actag/{id}','ActagController@destroy');
 
     Route::get('abtag','AbtagController@index');
     Route::post('abtag','AbtagController@store');
+    Route::post('abtag/{id}/edit','AbtagController@update');
     Route::post('abtag/{id}','AbtagController@destroy');
 
 //配置网站
@@ -130,26 +138,42 @@ Route::group(
 Route::group([
     'namespace'=>'Web'
 ],function (){
+//显示新闻
+    Route::get('web','WebController@index');
+    //显示具体某篇新闻的数据
+    Route::get('web/{id}','WebController@show');
+    //显示相关文章
+    Route::get('web_about/{id}','WebController@about');
+
+    //全局搜索
+
+    Route::get('search_all','WebSearchController@index');
+    Route::get('web_search','WebSearchController@search');
+
+//分类接口
+    Route::get('sort','SortController@index');
     //首页分类的文章
-    Route::get('web_index_report','WebReportIndexController@index');
-    Route::get('web_index_information','WebInformationIndexController@index');
-    Route::get('web_index_activities','WebActivitiesIndexController@index');
-//该分类下最热门的文章
-    Route::get('web_index_newreport','WebReportIndexController@newindex');
-    Route::get('web_index_newinformation','WebInformationIndexController@newindex');
-    Route::get('web_index_newactivities','WebActivitiesIndexController@newindex');
+    Route::get('web_index','WebIndexController@index');
 //全网最热门|最新
     Route::get('web_index_new','WebNewController@index');
     Route::get('web_index_hot','WebNewController@hot');
     Route::get('web_index_hottag','WebNewController@hottag');
-
 //首页轮播图
-    Route::get('web_index_carousel','WebIndexCarouselController@index');
+    Route::get('web_carousel','WebCarouselController@index');
+ //点赞
+    Route::get('like/{id}','LikeController@like');
+//生成签名
+    Route::get('signature','SignatureController@getSignPackage');
 
-//资讯
-    Route::get('web_report','WebReportController@index');
-    Route::get('web_information','WebInformationController@index');
-    Route::get('web_activities','WebActivitiesController@index');
+    //第三方登录
+    Route::get('auth/weixinlogin','AuthWeixinLoginController@weinxinlogin');
+    Route::get('auth/weixin','AuthWeixinController@weixin');
+
+    Route::get('auth/qqlogin','AuthQqLoginController@qqlogin');
+    Route::get('auth/qq','AuthQqController@qq');
+
+
+
 });
 
 

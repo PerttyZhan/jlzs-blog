@@ -12,7 +12,7 @@ class Report_Retag extends Model
     //
     protected $table='report_retag';
     protected $primarKey='id';
-    protected $fillable=['report_id','tag_id','create_at','update_at'];
+    protected $fillable=['new_id','tag_id','create_at','update_at'];
 
 
 }

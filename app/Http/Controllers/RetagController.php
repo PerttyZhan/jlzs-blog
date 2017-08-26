@@ -43,7 +43,7 @@ class RetagController extends Controller
         $name=$request->get('name');
         $citations=$request->get('citations');
 
-        $retag=InTag::find($id)->update([
+        $retag=ReTag::find($id)->update([
             'name'=>$name,
             'citations'=>$citations
         ]);

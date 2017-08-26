@@ -12,9 +12,9 @@ class InTag extends Model
     //
     protected $table='intag';
     protected $primarKey='id';
-    protected $fillable=['name','citations','created_at','updated_at'];
+    protected $fillable=['name','difference','citations','created_at','updated_at'];
     public function information()
     {
-        return $this->belongsToMany('App\Model\Information','information_intag','tag_id','information_id');
+        return $this->belongsToMany('App\Model\Information','information_intag','tag_id','new_id');
     }
 }

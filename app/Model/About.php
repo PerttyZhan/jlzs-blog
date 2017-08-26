@@ -26,13 +26,21 @@ class About extends Model
         return $this->hasMany('App\Model\About_Comments','user_id','id');
     }
 
-    public function sort_about()
+    public function sort()
     {
         return $this->belongsTo('App\Model\Sort_About','sort_id','id');
     }
 
+    public function sort_about()
+    {
+        return $this->belongsTo('App\Model\Sort_About','sort_id','id');
+    }
     public function abtag()
     {
-        return $this->belongsToMany('App\Model\AcTage','about_abtag','about_id','tag_id');
+        return $this->belongsToMany('App\Model\AcTage','about_abtag','new_id','tag_id');
+    }
+    public function tag()
+    {
+        return $this->belongsToMany('App\Model\AcTage','about_abtag','new_id','tag_id');
     }
 }

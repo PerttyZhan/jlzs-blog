@@ -12,5 +12,5 @@ class Activities_Actag extends Model
     //
     protected $table='activities_actag';
     protected $primarKey='id';
-    protected $fillable=['activities_id','tag_id','created_at','updated_at'];
+    protected $fillable=['new_id','tag_id','created_at','updated_at'];
 }

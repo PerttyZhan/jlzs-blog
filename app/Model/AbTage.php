@@ -15,6 +15,6 @@ class AbTage extends Model
     protected $fillable=['name','citations','created_at','updated_at'];
     public function activities()
     {
-        return $this->belongsToMany('App\Model\About','about_abtag','tag_id','about_id');
+        return $this->belongsToMany('App\Model\About','about_abtag','tag_id','new_id');
     }
 }

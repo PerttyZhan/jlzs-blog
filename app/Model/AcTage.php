@@ -12,7 +12,7 @@ class AcTage extends Model
     //
     protected $table='actag';
     protected $primarKey='id';
-    protected $fillable=['name','citations','created_at','updated_at'];
+    protected $fillable=['name','difference','citations','created_at','updated_at'];
     public function activities()
     {
         return $this->belongsToMany('App\Model\Activities','activities_actag','tag_id','activities_id');

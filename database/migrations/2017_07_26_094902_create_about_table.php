@@ -18,12 +18,12 @@ class CreateAboutTable extends Migration
             $table->collation = 'utf8_general_ci';
 
             $table->increments('id');
-            $table->string('name',25);
+            $table->string('name',25)->nullable();
             $table->string('headline');
-            $table->string('title',100);
+            $table->string('title',100)->nullable();
             $table->integer('view')->default(0);
             $table->integer('weight')->default(0);
-            $table->string('content',455);
+            $table->text('content');
             $table->integer('status')->default('1');
             $table->string('img_src',255)->nullable();
 

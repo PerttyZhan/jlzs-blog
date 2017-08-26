@@ -14,15 +14,15 @@ class About_AbTagSeeder extends Seeder
     {
 
         About_Abtag::create([
-            'about_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>1
         ]);
         About_Abtag::create([
-            'about_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>2
         ]);
         About_Abtag::create([
-            'about_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>3
         ]);
     }

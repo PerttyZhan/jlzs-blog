@@ -14,19 +14,19 @@ class Report_ReTagSeeder extends Seeder
     {
         //
         Report_Retag::create([
-            'report_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>1
         ]);
         Report_Retag::create([
-            'report_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>2
         ]);
         Report_Retag::create([
-            'report_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>3
         ]);
         Report_Retag::create([
-            'report_id'=>'1',
+            'new_id'=>'1',
             'tag_id'=>4
         ]);
 

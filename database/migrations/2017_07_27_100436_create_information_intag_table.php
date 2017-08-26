@@ -18,8 +18,8 @@ class CreateInformationIntagTable extends Migration
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
 
-            $table->integer('information_id')->unsigned()->index();
-            $table->foreign('information_id')->references('id')->on('information');
+            $table->integer('new_id')->unsigned()->index();
+            $table->foreign('new_id')->references('id')->on('information');
             $table->integer('tag_id')->unsigned()->index();
             $table->foreign('tag_id')->references('id')->on('intag');
 

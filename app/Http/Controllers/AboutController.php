@@ -109,18 +109,25 @@ class AboutController extends Controller
             'img_src' => $img_src
 
         ]);
-
-        About::find($resoult->id)->abtag()->attach($abtag_id, ['created_at' => date('Y-m-d H-i-s'), 'updated_at' => date('Y-m-d H-i-s')]);
-        $abtag = AbTage::whereIn('id', $abtag_id)->get();
-        foreach ($abtag as $k => $y) {
-            $y->citations = $y->citations + 1;
-            $y->save();
-        }
-        if (!empty($resoult)) {
-            return $this->jsonSuccess();
-        } else {
-            return $this->jsonResponse('1', '添加失败');
-        }
+if (!$abtag_id){
+    if (!empty($resoult)) {
+        return $this->jsonSuccess();
+    } else {
+        return $this->jsonResponse('1', '添加失败');
+    }
+}else{
+    About::find($resoult->id)->abtag()->attach($abtag_id, ['created_at' => date('Y-m-d H-i-s'), 'updated_at' => date('Y-m-d H-i-s')]);
+    $abtag = AbTage::whereIn('id', $abtag_id)->get();
+    foreach ($abtag as $k => $y) {
+        $y->citations = $y->citations + 1;
+        $y->save();
+    }
+    if (!empty($resoult)) {
+        return $this->jsonSuccess();
+    } else {
+        return $this->jsonResponse('1', '添加失败');
+    }
+}
     }
 
 
